@@ -6,16 +6,41 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/18 23:57:22 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/20 16:00:42 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-#include <mlx.h>
+#include "minilibx/mlx.h"
+#include "libft/libft.h"
 #include <math.h>
 #include <stdlib.h>
+#include <fcntl.h>
+
+/* color for printing on the screen*/
+# define COLOR_WHITE 0xFFFFFF
+# define COLOR_BLACK 0x000000
+# define COLOR_RED 0xFF0000
+# define COLOR_GREEN 0x00FF00
+# define COLOR_BLUE 0x0000FF
+# define COLOR_YELLOW 0xFFFF00
+# define COLOR_MAGENTA 0xFF00FF
+# define COLOR_CYAN 0x00FFFF
+/* Define color macros */
+# define GREEN   "\033[1;32m"
+# define CYAN    "\033[1;36m"
+# define YELLOW  "\033[1;33m"
+# define RED     "\033[1;31m"
+# define RESET   "\033[0m"
+/* Define default size for the windows */
+# define DEFAULT_WIDTH 1280
+# define DEFAULT_HEIGHT 720
+# define MAX_WIDTH 5120
+# define MAX_HEIGHT 2880
+/* Useful Macros for the angles */
+# define PI 3.14159265358979323846
 
 typedef struct s_point
 {
@@ -30,7 +55,7 @@ typedef struct s_map
 	int	width;
 	int	height;
 	int	**z_matrix;
-	int	**color_matrix:
+	int	**color_matrix;
 }		t_map;
 
 typedef struct s_fdf
@@ -45,5 +70,9 @@ typedef struct s_fdf
 	double	angle;
 }		t_fdf;
 
+int	**allocate_matrix(int width, int height);
+void	free_matrix(int **matrix, int height);
+void	parse_point(char *str, int *z, int *color);
+int	count_words(const char *s, char c);
+
 #endif
-//https://github.com/ailopez-o/42Barcelona-FdF?tab=readme-ov-file
