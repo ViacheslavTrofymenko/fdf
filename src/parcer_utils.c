@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 20:30:51 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 23:33:49 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/24 00:01:34 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	parse_point(char *str, int *z, int *color)
 	int		i;
 	char	*base;
 
-	base = "0123456789ABSDEF";
+	base = "0123456789ABCDEF";
 	parts = ft_split(str, ',');
 	if (!parts || !is_valid_integer(parts[0]))
 		return (0);
