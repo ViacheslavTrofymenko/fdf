@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:09:23 by atucci            #+#    #+#             */
-/*   Updated: 2023/10/01 10:36:48 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/11 22:21:44 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/11 22:21:51 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,48 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*str;
-	int		lentot;
-	size_t	index;
+	size_t	total_len;
+	size_t	s1_len;
 	size_t	i;
 
 	i = 0;
-	index = 0;
-	if (!s1 || !s2)
-		return (0);
-	lentot = ft_strlen(s1) + ft_strlen(s2) + 1;
-	str = (char *)malloc(lentot);
-	if (str == 0)
-		return (0);
-	while (s1[index])
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
+	s1_len = ft_strlen(s1);
+	total_len = s1_len + ft_strlen(s2);
+	str = (char *)malloc((total_len + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	while (i < total_len)
 	{
-		str[index] = s1[index];
-		index++;
+		if (i < s1_len)
+			str[i] = s1[i];
+		else
+			str[i] = s2[i - s1_len];
+		i++;
 	}
-	while (s2[i])
-	{
-		str[index++] = s2[i++];
-	}
-	str[index] = '\0';
+	str[i] = '\0';
 	return (str);
 }
+/*
+int main()
+{
+	char	s1[] = "Hello ";
+	char	s2[] = "Madrid!!!";
+	char	*res = ft_strjoin(s1, s2);
+	int		i = 0;
+
+	if (res)
+	{
+		printf("Pointer = %p\n", res);
+		while (res[i] != '\0')
+		{
+			printf("%c", res[i]);
+			i++;
+		}
+		printf("\n");
+		free(res);
+	}
+	return (0);
+}
+*/

@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast.c                                       :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 16:38:50 by atucci            #+#    #+#             */
-/*   Updated: 2023/10/01 10:34:57 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/14 12:50:18 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/14 12:50:20 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-t_list	*ft_lstlast(t_list *lst)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	if (lst == NULL)
-		return (0);
-	while (lst->next != NULL)
+	t_list	*temp;
+
+	if (!lst || !*lst || !del)
+		return ;
+	while (*lst)
 	{
-		lst = lst -> next;
+		temp = (*lst)->next;
+		del((*lst)->content);
+		free(*lst);
+		*lst = temp;
 	}
-	return (lst);
+	*lst = NULL;
 }

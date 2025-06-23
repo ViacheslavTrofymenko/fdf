@@ -3,17 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:02:34 by atucci            #+#    #+#             */
-/*   Updated: 2023/01/25 19:10:38 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/10 13:34:51 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/10 13:34:55 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-int	ft_toupper(int chad)
+int	ft_toupper(int c)
 {
-	if (chad >= 97 && chad <= 122)
-		chad -= 32;
-	return (chad);
+	if (c > 96 && c < 123)
+		return (c - 32);
+	return (c);
 }
+/*
+int	main(void)
+{
+	printf("Lib function result = %d\n", toupper(97));
+	printf("Lib function result = %d\n", toupper(96));
+	printf("Custom function result = %d\n", ft_toupper(97));
+	printf("Custom function result = %d\n", ft_toupper(96));
+	return (0);
+}
+*/

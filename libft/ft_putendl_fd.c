@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:12:54 by atucci            #+#    #+#             */
-/*   Updated: 2023/10/01 10:37:05 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/14 10:43:12 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/14 10:43:15 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 
 void	ft_putendl_fd(char *s, int fd)
 {
-	if (s != NULL)
+	while (*s)
 	{
-		ft_putstr_fd(s, fd);
-		ft_putchar_fd('\n', fd);
+		write(fd, s, 1);
+		s++;
 	}
+	write(fd, "\n", 1);
 }
+/*
+int main(void)
+{
+	ft_putendl_fd("Hi stdout", 1);
+	ft_putendl_fd("Hi error", 2);
+	return (0);
+}
+*/

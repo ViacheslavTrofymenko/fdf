@@ -3,26 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:12:34 by atucci            #+#    #+#             */
-/*   Updated: 2023/01/26 14:11:51 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/14 10:41:55 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/14 10:42:05 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putstr_fd(char *c, int fd)
+void	ft_putstr_fd(char *s, int fd)
 {
-	size_t	count;
-
-	count = 0;
-	if (c != 0)
+	while (*s)
 	{
-		while (c[count])
-		{
-			ft_putchar_fd(c[count], fd);
-			count++;
-		}
+		write(fd, s, 1);
+		s++;
 	}
 }
+/*
+int main(void)
+{
+	ft_putstr_fd("Hi stdout\n", 1);
+	ft_putstr_fd("Hi error\n", 2);
+	return (0);
+}
+*/

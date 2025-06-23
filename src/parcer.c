@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:21 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/20 15:58:33 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/23 19:25:29 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static int	get_map_height(char *filename)
 	int	height;
 	char	*line;
 
+	height = 0;
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (-1);
@@ -42,10 +43,53 @@ static int	get_map_width(char *filename)
 		return (-1);
 	line = get_next_line(fd);
 	if (line)
-		width = ft_how_many_words(line, ' ');
+		width = count_words(line, ' ');
 	free(line);
 	close(fd);
 	return (width);
+}
+
+static int	parse_line(char *line, int y, t_map *map)
+{
+	char	**words;
+	int		x;
+
+	words = ft_split(line, ' ');
+	if (!words)
+		return (1);
+	x = 0;
+	while (x < map->width)
+	{
+		parse_point(words[x], &map->z_matrix[y][x],
+			&map->color_matrix[y][x]);
+		free(words[x]);
+		x++;
+	}
+	free(words);
+	return (0);
+}
+
+int	fill_data(char *filename, t_map *map)
+{
+	int		fd;
+	char	*line;
+	int		y;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (1);
+	y = 0;
+	while (y < map->height)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		if (parse_line(line, y, map))
+			return (free(line), close(fd), 1);
+		free(line);
+		y++;
+	}
+	return (close(fd), 0);
 }
 
 int	parse_map(char *filename, t_map *map)
@@ -58,5 +102,5 @@ int	parse_map(char *filename, t_map *map)
 	map->color_matrix = allocate_matrix(map->width, map->height);
 	if (!map->z_matrix || !map->color_matrix)
 		return (1);
-	return fill_data(filename, map);
+	return (fill_data(filename, map));
 }

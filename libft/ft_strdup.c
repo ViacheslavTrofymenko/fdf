@@ -3,24 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:06:46 by atucci            #+#    #+#             */
-/*   Updated: 2023/01/29 11:39:49 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/11 20:10:41 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/11 20:10:44 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-char	*ft_strdup(const char *sour)
+char	*ft_strdup(const char *s)
 {
-	char	*dupli;
-	int		len;
+	char	*dup;
+	size_t	len;
+	size_t	i;
 
-	len = ft_strlen(sour) + 1;
-	dupli = malloc(len * sizeof(char));
-	if (dupli == (void *)0)
+	i = 0;
+	len = ft_strlen(s);
+	dup = (char *)malloc((len + 1) * sizeof(char));
+	if (!dup)
+		return (NULL);
+	while (i < len)
 	{
-		return (0);
+		dup[i] = s[i];
+		i++;
 	}
-	return (ft_memcpy(dupli, sour, len));
+	dup[i] = '\0';
+	return (dup);
 }
+/*
+int	main()
+{
+	char	*dest;
+	int		len = 0;
+	int		i = 0;
+	char	*src = "Hello Madrid";
+
+	dest = ft_strdup(src);
+	printf("Result1 = %p\n", dest);
+	while (i < 12)
+	{
+		printf("Result = %c\n", dest[i]);
+		i++;
+	}
+	free(dest);
+	return (0);
+}
+*/

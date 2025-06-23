@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/14 10:41:12 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/04/14 10:41:14 by vtrofyme         ###   ########.fr       */
+/*   Created: 2025/04/14 12:28:50 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/14 12:28:52 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_putchar_fd(char c, int fd)
+t_list	*ft_lstlast(t_list *lst)
 {
-	write(fd, &c, 1);
+	if (!lst)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
 /*
-int main(void)
+int main()
 {
-	ft_putchar_fd('H', 1);
-	ft_putchar_fd('i', 1);
-	ft_putchar_fd('\n', 1);
+	t_list *head = ft_lstnew(1);
+	head->next = ft_lstnew(2);
+	head->next->next = ft_lstnew(3);
 
-	ft_putchar_fd('E', 2);
-	ft_putchar_fd('r', 2);
-	ft_putchar_fd('r', 2);
-	ft_putchar_fd('o', 2);
-	ft_putchar_fd('r', 2);
-	ft_putchar_fd('\n', 2);
-
+	t_list *last = ft_lstlast(head);
+	if (last != NULL)
+		printf("Last node: %d\n", last->content);
 	return (0);
 }
 */

@@ -3,109 +3,99 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:10:04 by atucci            #+#    #+#             */
-/*   Updated: 2023/10/01 10:32:48 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/12 01:46:21 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/12 01:46:24 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	lenght_word(char const *s, char c)
+static size_t	ft_size_of_mem(char *s, char c)
 {
-	size_t	start;
-	size_t	end;
-	size_t	sublen;
-	size_t	cs;
+	size_t	count;
+	size_t	in_string;
 
-	sublen = 0;
-	cs = 0;
-	while (cs < ft_strlen(s))
+	count = 0;
+	in_string = 0;
+	if (!s)
+		return (0);
+	while (*s)
 	{
-		while (cs < ft_strlen(s) && s[cs] == c)
-			cs++;
-		if (cs < ft_strlen(s))
+		if (*s == c)
+			in_string = 0;
+		else
 		{
-			start = cs;
-			while (cs < ft_strlen(s) && s[cs] != c)
-				cs++;
-			end = cs;
-			sublen = end - start;
-			return (sublen);
+			if (!in_string)
+			{
+				in_string = 1;
+				count++;
+			}
 		}
+		s++;
 	}
-	return (sublen);
+	return (count);
 }
 
-size_t	ft_how_many_words(char const *s, char c)
-{
-	size_t	cs;
-	size_t	ci;
-
-	cs = 0;
-	ci = 0;
-	while (cs < ft_strlen(s))
-	{
-		while (cs < ft_strlen(s) && s[cs] == c)
-		{
-			cs++;
-		}
-		if (cs < ft_strlen(s))
-		{
-			ci++;
-		}
-		while (cs < ft_strlen(s) && s[cs] != c)
-		{
-			cs++;
-		}
-	}
-	return (ci);
-}
-
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+static int	ft_free_mem(char **arr)
 {
 	size_t	i;
 
 	i = 0;
-	while ((src[i] != '\0') && (i < len))
+	while (arr[i])
 	{
-		dst[i] = src[i];
+		free(arr[i]);
 		i++;
 	}
-	while (i < len)
-	{
-		dst[i] = '\0';
-		i++;
-	}
-	return (dst);
+	free(arr);
+	return (1);
 }
 
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
-	size_t	index;
-	size_t	cs;
-	size_t	start;
+	char	*start;
+	size_t	i;
 
-	res = malloc(sizeof(char *) * (ft_how_many_words(s, c) + 1));
-	res[ft_how_many_words(s, c)] = 0;
-	index = 0;
-	cs = 0;
-	while (cs < ft_strlen(s))
+	res = (char **)malloc((ft_size_of_mem((char *)s, c) + 1) * sizeof(char *));
+	if (!s || !res)
+		return (NULL);
+	i = 0;
+	while (*s)
 	{
-		while (s[cs] == c && cs < ft_strlen(s))
-			cs++;
-		if (cs < ft_strlen(s))
+		if (*s == c)
 		{
-			start = cs;
-			while (s[cs] != c && cs < ft_strlen(s))
-				cs++;
-			res[index] = malloc(sizeof(char) * (lenght_word(s + start, c) + 1));
-			ft_strncpy(res[index], s + start, lenght_word(s + start, c));
-			res[index][lenght_word(s + start, c)] = '\0';
-			index++;
+			s++;
+			continue ;
 		}
+		start = (char *)s;
+		while (*s && *s != c)
+			s++;
+		res[i] = ft_substr(start, 0, s - start);
+		if (!res[i] && ft_free_mem(res))
+			return (NULL);
+		i++;
 	}
+	res[i] = NULL;
 	return (res);
 }
+/*
+int main(int argc, char *argv[])
+{
+	if (argc == 3)
+	{
+		char delimiter = argv[2][0];
+		char **result = ft_split(argv[1], delimiter);
+		if (result)
+		{
+		for (int i = 0; result[i] != NULL; i++)
+			printf("Result of string %d: %s\n", i, result[i]);
+			for (int i = 0; result[i] != NULL; i++)
+				free(result[i]);
+			free(result);
+		}
+	}
+	return (0);
+}
+*/

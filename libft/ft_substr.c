@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:09:03 by atucci            #+#    #+#             */
-/*   Updated: 2023/10/01 10:29:17 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/11 21:44:31 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/11 21:44:34 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	count;
+	char	*res;
+	size_t	len_s;
+	size_t	i;
 
-	if (s == NULL)
+	len_s = ft_strlen(s);
+	if (start >= len_s)
+		len = 0;
+	if (len_s - start < len)
+		len = len_s - start;
+	res = (char *)malloc((len + 1) * sizeof(char));
+	if (!res)
 		return (NULL);
-	if (start >= ft_strlen(s))
-		start = ft_strlen(s);
-	if ((start + len) >= ft_strlen(s))
-		len = ft_strlen(s) - start;
-	str = (char *)malloc(len + 1);
-	if (str == 0)
-		return (0);
-	count = 0;
-	while (count != len)
+	i = 0;
+	while (i < len)
 	{
-		str[count] = *(s + start + count);
-		count++;
+		res[i] = s[start + i];
+		i++;
 	}
-	str[count] = '\0';
-	return (str);
+	res[i] = '\0';
+	return (res);
 }

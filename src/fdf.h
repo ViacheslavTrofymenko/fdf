@@ -6,15 +6,15 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/20 16:00:42 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/23 19:24:50 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 #define FDF_H
 
-#include "minilibx/mlx.h"
-#include "libft/libft.h"
+#include "../../minilibx-linux/mlx.h"
+#include "../libft/libft.h"
 #include <math.h>
 #include <stdlib.h>
 #include <fcntl.h>
@@ -70,9 +70,10 @@ typedef struct s_fdf
 	double	angle;
 }		t_fdf;
 
-int	**allocate_matrix(int width, int height);
+int		**allocate_matrix(int width, int height);
 void	free_matrix(int **matrix, int height);
 void	parse_point(char *str, int *z, int *color);
-int	count_words(const char *s, char c);
+int		count_words(const char *s, char c);
+int		parse_map(char *filename, t_map *map);
 
 #endif

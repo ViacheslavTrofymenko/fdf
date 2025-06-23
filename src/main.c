@@ -6,11 +6,11 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:18 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/20 15:56:55 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/23 13:54:50 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "fdf.h"
 
 static int	is_valid_extension(char *map_name)
 {
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 		return (ft_printf("%sError:\nWrong number of args.%s\n", RED, RESET));
 	if (!is_valid_extension(argv[1]))
 		return (1);
-	if (!parse_map(argv[1], &map != 0))
+	if (!parse_map(argv[1], &map))
 		return (ft_printf("%sError:\nFailed to parse map..%s\n", RED, RESET));
 	ft_printf("%sMap parsed successfully!%s\n", GREEN, RESET);
 	free_matrix(map.z_matrix, map.height);

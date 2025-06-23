@@ -3,56 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:10:24 by atucci            #+#    #+#             */
-/*   Updated: 2023/10/01 10:34:24 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/12 11:21:12 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/12 11:21:16 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include <stdlib.h>
+
 #include "libft.h"
 
-static unsigned int	digits(int n)
+static int	ft_num_of_digits(int n)
 {
-	unsigned int	count;
+	int	digits;
 
-	if (n > 0)
-		count = 0;
-	else
-		count = 1;
-	while (n != 0)
+	digits = 1;
+	if (n < 0)
+	{
+		digits++;
+		n = -n;
+	}
+	while (n >= 10)
 	{
 		n /= 10;
-		count++;
+		digits++;
 	}
-	return (count);
+	return (digits);
+}
+
+static char	*ft_handle_edge_case(void)
+{
+	char	*res;
+
+	res = (char *)malloc(12 * sizeof(char));
+	if (!res)
+		return (NULL);
+	ft_strlcpy(res, "-2147483648", 12);
+	return (res);
+}
+
+static char	*ft_convert_to_string(int n, int res_len)
+{
+	int		i;
+	int		num;
+	char	*res;
+
+	res = (char *)malloc((res_len + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	i = res_len - 1;
+	num = n;
+	if (num < 0)
+	{
+		res[0] = '-';
+		num = -num;
+	}
+	while (num >= 10)
+	{
+		res[i] = (num % 10) + '0';
+		num /= 10;
+		i--;
+	}
+	res[i] = (num % 10) + '0';
+	res[res_len] = '\0';
+	return (res);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*res;
-	int		len;
-	long	niu;
+	int		res_len;
 
-	niu = n;
-	len = digits(niu);
-	res = (char *)malloc((len + 1) * sizeof(char));
-	if (res == 0)
-		return (0);
-	if (niu < 0)
-	{
-		res[0] = '-';
-		res[len--] = '\0';
-		niu = -niu;
-	}
-	else
-		res[len--] = '\0';
-	if (niu == 0)
-		res[0] = '0';
-	while (niu > 0)
-	{
-		res[len--] = (niu % 10) + '0';
-		niu /= 10;
-	}
-	return (res);
+	if (n == -2147483648)
+		return (ft_handle_edge_case());
+	res_len = ft_num_of_digits(n);
+	return (ft_convert_to_string(n, res_len));
 }
+/*
+int main(int argc, char *argv[])
+{
+	if (argc == 2)
+	{
+		char	*str = ft_itoa(atoi(argv[1]));
+		int		i = 0;
+		if (str)
+		{
+			while (str[i] != '\0')
+			{
+				printf("%c", str[i]);
+				i++;
+			}
+			free(str);
+		}
+	}
+	return (0);
+}
+*/

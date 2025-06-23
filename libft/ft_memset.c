@@ -3,25 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:00:41 by atucci            #+#    #+#             */
-/*   Updated: 2023/10/01 10:38:24 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/08 14:10:44 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/08 14:10:46 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
-void	*ft_memset(void *dest, int v, size_t count)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	char	*char_dest;
-	size_t	c;
+	unsigned char	*dest;
+	size_t			i;
 
-	char_dest = (char *) dest;
-	c = 0;
-	while (c < count)
+	i = 0;
+	dest = s;
+	while (i < n)
 	{
-		char_dest[c] = v;
-		c++;
+		*dest = c;
+		i++;
+		dest++;
 	}
-	return (char_dest);
+	return (s);
 }
+/*
+int main(void)
+{
+	char str[30] = "Memset example";
+	printf("Normal String = %s\n", str);
+	memset(str, '!', 5);
+	printf("String after memset = %s\n", str);
+	return (0);
+}
+*/

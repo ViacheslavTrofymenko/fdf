@@ -3,94 +3,70 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: atucci <atucci@student.42.fr>              +#+  +:+       +#+         #
+#    By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/25 14:12:05 by atucci            #+#    #+#              #
-#    Updated: 2023/08/09 11:40:24 by atucci           ###   ########.fr        #
+#    Created: 2025/04/08 17:46:53 by vtrofyme          #+#    #+#              #
+#    Updated: 2025/06/23 19:48:02 by vtrofyme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-Library		= libft
+# Define variables
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-files 	   = ft_strlen \
-			 ft_memmove \
-			 ft_memcpy \
-			 ft_strlcpy \
-			 ft_strlcat \
-			 ft_isalpha \
-			 ft_isdigit \
-			 ft_isalnum \
-			 ft_isascii \
-			 ft_isprint \
-			 ft_memset \
-			 ft_bzero \
-			 ft_toupper \
-			 ft_tolower \
-			 ft_strchr \
-			 ft_strrchr \
-			 ft_strncmp \
-			 ft_memchr \
-			 ft_memcmp \
-			 ft_strnstr \
-			 ft_atoi \
-			 ft_calloc \
-			 ft_strdup \
-			 ft_substr \
-			 ft_strjoin \
-			 ft_strtrim \
-			 ft_split \
-			 ft_itoa \
-			 ft_strmapi \
-			 ft_striteri \
-			 ft_putchar_fd \
-			 ft_putstr_fd \
-			 ft_putendl_fd \
-			 ft_putnbr_fd \
-			 ft_lstnew \
-			 ft_lstadd_front \
-			 ft_lstsize \
-			 ft_lstlast \
-			 ft_lstadd_back \
-			 ft_lstdelone \
-			 ft_lstclear \
-			 ft_lstiter \
-			 ft_lstmap \
-			 ft_printf \
-			 ft_num_utils \
-			 ft_printf_utils \
-			 ft_pointer \
-			 get_next_line \
+NAME = libft.a
 
+SRCS = \
+	ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c \
+	ft_isdigit.c ft_isprint.c ft_itoa.c ft_memchr.c ft_memcmp.c ft_memcpy.c \
+	ft_memmove.c ft_memset.c ft_putchar_fd.c ft_putendl_fd.c ft_putnbr_fd.c \
+	ft_putstr_fd.c ft_split.c ft_strchr.c ft_strdup.c ft_striteri.c \
+	ft_strjoin.c ft_strlcat.c ft_strlcpy.c ft_strlen.c ft_strmapi.c \
+	ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
+	ft_tolower.c ft_toupper.c ft_atoi_base.c get_next_line.c
 
+BONUS_SRCS = \
+	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c \
+	ft_lstdelone_bonus.c ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
+# List of object files
+OBJS = $(SRCS:.c=.o)
 
+# List of bonus object files
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-
-Compiler	= clang
-
-CmpFlags	= -Wall -Wextra -Werror
-
-OUTN	= $(Library).a
-
-CFILES	= $(files:%=%.c)
-
-OFILES	= $(files:%=%.o)
-
-NAME	= $(OUTN)
-
-$(NAME):
-	$(Compiler) $(CmpFlags) -c $(CFILES) -I./
-	ar -rc $(OUTN) $(OFILES)
-
+# The default rule is all, which compiles the library
 all: $(NAME)
 
+# Rule to create the library
+$(NAME): $(OBJS)
+	@echo "Creating library $(NAME)"
+	@ar rcs $(NAME) $(OBJS)
+
+# Bonus rule to add the bonus functions to library
+bonus: $(OBJS) $(BONUS_OBJS)
+	@echo "Adding bonus files to library $(NAME)"
+	@ar rcs $(NAME) $(OBJS) $(BONUS_OBJS)
+
+# Compile the object files
+%.o: %.c
+	@echo "Compiling $<"
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# Clean object files
 clean:
-	rm -f $(NAME)
-	rm -f $(OFILES)
+	@echo "Cleaning object files..."
+	@rm -rf $(OBJS) $(BONUS_OBJS)
 
+# Remove all generated files
 fclean: clean
-	rm -f $(NAME)
+	@echo "Cleaning all generated files..."
+	@rm -f $(NAME)
+	@echo "Cleaned succesfully"
 
+# Rebuild everything
 re: fclean all
 
-.PHONY: all, clean, fclean, re
+# Prevent unnecessary commands
+.PHONY: all clean fclean re
+# cc test_libft.c libft.h libft.a -lbsd

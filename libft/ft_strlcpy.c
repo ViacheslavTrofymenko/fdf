@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   strlcpy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: atucci <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/17 12:01:53 by atucci            #+#    #+#             */
-/*   Updated: 2023/01/29 15:41:40 by atucci           ###   ########.fr       */
+/*   Created: 2025/04/08 19:31:37 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/04/08 19:31:39 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *sour, size_t size)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	src_len;
+	size_t	i;
+	size_t	j;
 
-	src_len = 0;
-	if (size == 0)
-		return (ft_strlen(sour));
-	while (sour[src_len] && src_len < size - 1)
+	i = 0;
+	while (src[i] != '\0')
 	{
-		dest[src_len] = sour[src_len];
-		src_len++;
+		i++;
 	}
-	if (src_len < size)
-		dest[src_len] = '\0';
-	while (sour[src_len])
-		src_len++;
-	return (src_len);
+	if (size == 0)
+	{
+		return (i);
+	}
+	j = 0;
+	while (j < size - 1 && src[j] != '\0')
+	{
+		dst[j] = src[j];
+		j++;
+	}
+	dst[j] = '\0';
+	return (i);
 }
