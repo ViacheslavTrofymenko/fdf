@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:24 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 19:51:06 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/23 23:03:44 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,42 +47,63 @@ void	free_matrix(int **matrix, int height)
 	free(matrix);
 }
 
-void	parse_point(char *str, int *z, int *color)
+void	free_str_array(char **arr)
 {
-	char **parts;
-	int		i;
-	char	*base;
-
-	base = "0123456789ABSDEF";
-	parts = ft_split(str, ',');
-	*z = ft_atoi(parts[0]);
-	if (parts[1])
-		*color = ft_atoi_base(parts[1], base);
-	else
-		*color = 0xFFFFFF;
-	i = 0;
-	while (parts[i])
-	{
-		free(parts[i]);
-		i++;
-	}
-	free(parts);
+	int i = 0;
+	if (!arr)
+		return;
+	while (arr[i])
+		free(arr[i++]);
+	free(arr);
 }
 
-int	count_words(const char *s, char c)
+static int	count_words(const char *s)
 {
 	int	count = 0;
 	int	in_word = 0;
 	while (*s)
 	{
-		if (*s != c && !in_word)
+		if (!ft_isspace(*s) && !in_word)
 		{
 			in_word = 1;
 			count++;
 		}
-		else if (*s == c)
+		else if (ft_isspace(*s))
 			in_word = 0;
 		s++;
 	}
 	return (count);
+}
+
+char	**split_by_spaces(char *s)
+{
+	char	**result;
+	int		count;
+	int		i;
+	char	*start;
+	int		len;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	count = count_words(s);
+	result = malloc(sizeof(char *) * (count + 1));
+	if (!result)
+		return (NULL);
+	while (*s)
+	{
+		while (*s && ft_isspace(*s))
+			s++;
+		if (*s)
+		{
+			start = s;
+			len = 0;
+			while (s[len] && !ft_isspace(s[len]))
+				len++;
+			result[i++] = ft_substr(start, 0, len);
+			s += len;
+		}
+	}
+	result[i] = NULL;
+	return (result);
 }

@@ -6,7 +6,7 @@
 #    By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/08 17:46:53 by vtrofyme          #+#    #+#              #
-#    Updated: 2025/06/23 20:03:33 by vtrofyme         ###   ########.fr        #
+#    Updated: 2025/06/23 20:17:26 by vtrofyme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ SRCS = \
 	ft_strncmp.c ft_strnstr.c ft_strrchr.c ft_strtrim.c ft_substr.c \
 	ft_tolower.c ft_toupper.c ft_atoi_base.c get_next_line.c \
 	ft_printf.c ft_parse_string.c ft_putchar_int.c ft_putnbr_int.c \
-	ft_putpointer_int.c ft_putstr_int.c ft_put_unsigned_int.c t_put_hex.c
+	ft_putpointer_int.c ft_putstr_int.c ft_put_unsigned_int.c ft_put_hex.c
 
 BONUS_SRCS = \
 	ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlast_bonus.c ft_lstadd_back_bonus.c \

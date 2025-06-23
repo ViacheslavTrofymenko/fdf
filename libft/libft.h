@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:13:54 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 20:01:39 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/23 23:05:30 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,14 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-int	ft_printf(const char *str, ...);
-int	ft_parse_string(char c, va_list *arg);
-int	ft_putchar_int(char c);
-int	ft_putstr_int(char *str);
-int	ft_putnbr_int(int nb);
-int	ft_putpointer_int(void *str);
-int	ft_put_unsigned_int(unsigned int n);
-int	ft_put_hex(unsigned int n, char *hex);
+int		ft_printf(const char *str, ...);
+int		ft_parse_string(char c, va_list *arg);
+int		ft_putchar_int(char c);
+int		ft_putstr_int(char *str);
+int		ft_putnbr_int(int nb);
+int		ft_putpointer_int(void *str);
+int		ft_put_unsigned_int(unsigned int n);
+int		ft_put_hex(unsigned int n, char *hex);
+int		ft_isspace(char c);
 
 #endif

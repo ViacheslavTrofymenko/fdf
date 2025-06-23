@@ -6,17 +6,17 @@
 #    By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/20 15:57:21 by vtrofyme          #+#    #+#              #
-#    Updated: 2025/06/23 19:21:45 by vtrofyme         ###   ########.fr        #
+#    Updated: 2025/06/23 22:45:04 by vtrofyme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fdf
 
 SRC_DIR		= src
-SRC			= $(addprefix $(SRC_DIR)/, main.c parcer.c utils.c)
+SRC			= $(addprefix $(SRC_DIR)/, main.c parcer.c parcer_utils.c utils.c)
 OBJ			= $(SRC:.c=.o)
 CC 			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g3
 LIBFT_DIR	= libft
 MLX_DIR		= ../minilibx-linux
 

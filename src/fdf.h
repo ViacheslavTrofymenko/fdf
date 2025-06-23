@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 19:24:50 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/23 23:04:51 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,13 @@ typedef struct s_fdf
 
 int		**allocate_matrix(int width, int height);
 void	free_matrix(int **matrix, int height);
-void	parse_point(char *str, int *z, int *color);
-int		count_words(const char *s, char c);
+void	free_str_array(char **arr);
+int		parse_point(char *str, int *z, int *color);
 int		parse_map(char *filename, t_map *map);
+int		is_valid_integer(const char *s);
+int		is_valid_hex(const char *s);
+int		get_map_height(char *filename);
+int		get_map_width(char *filename);
+char	**split_by_spaces(char *s);
 
 #endif
