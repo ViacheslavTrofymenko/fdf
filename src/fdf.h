@@ -6,18 +6,18 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 23:04:51 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/24 20:29:33 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
-#define FDF_H
+# define FDF_H
 
-#include "../../minilibx-linux/mlx.h"
-#include "../libft/libft.h"
-#include <math.h>
-#include <stdlib.h>
-#include <fcntl.h>
+# include "../../minilibx-linux/mlx.h"
+# include "../libft/libft.h"
+# include <math.h>
+# include <stdlib.h>
+# include <fcntl.h>
 
 /* color for printing on the screen*/
 # define COLOR_WHITE 0xFFFFFF
@@ -41,6 +41,16 @@
 # define MAX_HEIGHT 2880
 /* Useful Macros for the angles */
 # define PI 3.14159265358979323846
+# define THIRTY_DEG  0.523599
+
+# define ESC 65307
+# define LEFT 65361
+# define RIGHT 65363
+# define UP 65362
+# define DOWN 65364
+# define ZOOM_IN 61
+# define ZOOM_OUT 45
+# define P 112
 
 typedef struct s_point
 {
@@ -68,6 +78,11 @@ typedef struct s_fdf
 	int		shift_y;
 	int		projection;
 	double	angle;
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
 }		t_fdf;
 
 int		**allocate_matrix(int width, int height);
@@ -80,5 +95,10 @@ int		is_valid_hex(const char *s);
 int		get_map_height(char *filename);
 int		get_map_width(char *filename);
 char	**split_by_spaces(char *s);
+void	draw_map(t_fdf *fdf);
+int		handle_key(int key, t_fdf *fdf);
+int		close_window(t_fdf *fdf);
+t_point	create_point(int x, int y, t_fdf *fdf);
+int		close_window(t_fdf *fdf);
 
 #endif

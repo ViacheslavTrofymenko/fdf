@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 20:30:51 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/24 00:01:34 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:55:35 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	is_valid_hex(const char *s)
 
 int	parse_point(char *str, int *z, int *color)
 {
-	char **parts;
+	char	**parts;
 	int		i;
 	char	*base;
 

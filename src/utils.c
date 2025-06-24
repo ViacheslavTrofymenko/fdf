@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:24 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 23:03:44 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:54:25 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,11 @@ void	free_matrix(int **matrix, int height)
 
 void	free_str_array(char **arr)
 {
-	int i = 0;
+	int	i;
+
+	i = 0;
 	if (!arr)
-		return;
+		return ;
 	while (arr[i])
 		free(arr[i++]);
 	free(arr);
@@ -59,8 +61,11 @@ void	free_str_array(char **arr)
 
 static int	count_words(const char *s)
 {
-	int	count = 0;
-	int	in_word = 0;
+	int	count;
+	int	in_word;
+
+	count = 0;
+	in_word = 0;
 	while (*s)
 	{
 		if (!ft_isspace(*s) && !in_word)

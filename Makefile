@@ -6,14 +6,15 @@
 #    By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/20 15:57:21 by vtrofyme          #+#    #+#              #
-#    Updated: 2025/06/23 22:45:04 by vtrofyme         ###   ########.fr        #
+#    Updated: 2025/06/24 19:56:22 by vtrofyme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fdf
 
 SRC_DIR		= src
-SRC			= $(addprefix $(SRC_DIR)/, main.c parcer.c parcer_utils.c utils.c)
+SRC			= $(addprefix $(SRC_DIR)/, main.c parcer.c parcer_utils.c utils.c \
+				draw.c controls.c init.c)
 OBJ			= $(SRC:.c=.o)
 CC 			= cc
 CFLAGS		= -Wall -Wextra -Werror -g3
@@ -40,3 +41,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

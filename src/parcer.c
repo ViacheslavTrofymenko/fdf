@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:21 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 23:52:15 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/24 18:04:00 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 
 static int	validate_line_width(char **words, int expected_width, int y)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (words[count])
 		count++;
 	if (count != expected_width)
 	{
-		ft_printf("%sError: Inconsistent width at row %d (expected %d, got %d)%s\n",
-				  RED, y, expected_width, count, RESET);
+		ft_printf("%sError:\nInconsistent width at row %d "
+			"(expected %d, got %d)%s\n",
+			RED, y, expected_width, count, RESET);
 		return (0);
 	}
 	return (1);
@@ -42,10 +43,10 @@ static int	parse_line(char *line, int y, t_map *map)
 	while (x < map->width)
 	{
 		if (!parse_point(words[x], &map->z_matrix[y][x],
-						 &map->color_matrix[y][x]))
+			&map->color_matrix[y][x]))
 		{
 			ft_printf("%sError: invalid value at row %d, column %d ('%s')%s\n",
-					  RED, y, x, words[x], RESET);
+				RED, y, x, words[x], RESET);
 			free_str_array(words);
 			return (1);
 		}
@@ -55,7 +56,7 @@ static int	parse_line(char *line, int y, t_map *map)
 	return (0);
 }
 
-int count_lines(char *filename)
+int	count_lines(char *filename)
 {
 	int		fd;
 	int		count;
@@ -65,10 +66,12 @@ int count_lines(char *filename)
 	if (fd < 0)
 		return (-1);
 	count = 0;
-	while ((line = get_next_line(fd)))
+	line = get_next_line(fd);
+	while (line)
 	{
 		count++;
 		free(line);
+		line = get_next_line(fd);
 	}
 	close(fd);
 	return (count);
@@ -84,15 +87,12 @@ int	read_lines_from_file(char *filename, char ***lines, int *height)
 	*height = count_lines(filename);
 	if (*height <= 0)
 		return (1);
-
 	buffer = malloc(sizeof(char *) * (*height));
 	if (!buffer)
 		return (1);
-
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (free(buffer), 1);
-
 	i = 0;
 	line = get_next_line(fd);
 	while (i < *height)
@@ -100,7 +100,6 @@ int	read_lines_from_file(char *filename, char ***lines, int *height)
 		buffer[i++] = line;
 		line = get_next_line(fd);
 	}
-
 	close(fd);
 	*lines = buffer;
 	return (0);
@@ -109,24 +108,21 @@ int	read_lines_from_file(char *filename, char ***lines, int *height)
 int	parse_lines_into_map(char **lines, t_map *map, int height)
 {
 	char	**words;
-	int		width;
 	int		i;
 
 	words = split_by_spaces(lines[0]);
 	if (!words)
 		return (1);
-	width = 0;
-	while (words[width])
-		width++;
+	i = 0;
+	while (words[i])
+		i++;
 	free_str_array(words);
-
-	map->width = width;
+	map->width = i;
 	map->height = height;
-	map->z_matrix = allocate_matrix(width, height);
-	map->color_matrix = allocate_matrix(width, height);
+	map->z_matrix = allocate_matrix(i, height);
+	map->color_matrix = allocate_matrix(i, height);
 	if (!map->z_matrix || !map->color_matrix)
 		return (1);
-
 	i = 0;
 	while (i < height)
 	{
@@ -135,10 +131,8 @@ int	parse_lines_into_map(char **lines, t_map *map, int height)
 		free(lines[i]);
 		i++;
 	}
-	free(lines);
-	return (0);
+	return (free(lines), 0);
 }
-
 
 int	parse_map(char *filename, t_map *map)
 {

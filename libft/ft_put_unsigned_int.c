@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/27 11:53:11 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 20:04:56 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:33:09 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	ft_print_unsigned(unsigned int nbr)
 
 int	ft_put_unsigned_int(unsigned int nbr)
 {
-	int count;
+	int	count;
 
 	count = 1;
 	while (nbr > 9)

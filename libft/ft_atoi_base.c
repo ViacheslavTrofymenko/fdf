@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:37:34 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 19:52:31 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/24 17:32:55 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	is_in_base(char c, const char *base);
 int			ft_atoi_base_aux(const char *nptr, const char *base, int sign);
 
-int ft_isspace(char c)
+int	ft_isspace(char c)
 {
 	return (c == 32 || (c >= 9 && c <= 13));
 }
