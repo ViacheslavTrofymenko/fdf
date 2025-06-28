@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:21 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/24 18:04:00 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 11:22:11 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,25 @@ int	read_lines_from_file(char *filename, char ***lines, int *height)
 	*height = count_lines(filename);
 	if (*height <= 0)
 		return (1);
-	buffer = malloc(sizeof(char *) * (*height));
+	buffer = malloc(sizeof(char *) * (*height + 1));
 	if (!buffer)
 		return (1);
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (free(buffer), 1);
 	i = 0;
-	line = get_next_line(fd);
 	while (i < *height)
 	{
-		buffer[i++] = line;
 		line = get_next_line(fd);
+		if (!line)
+		{
+			free_str_array(buffer);
+			close(fd);
+			return (1);
+		}
+		buffer[i++] = line;
 	}
+	buffer[i] = NULL;
 	close(fd);
 	*lines = buffer;
 	return (0);

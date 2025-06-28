@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:18 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 10:17:31 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 14:21:14 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	is_valid_extension(char *map_name)
 	}
 	return (1);
 }
-void	free_all(t_fdf *fdf)
+int	close_window(t_fdf *fdf)
 {
 	if (!fdf)
 		return ;
@@ -65,11 +65,6 @@ void	free_all(t_fdf *fdf)
 		free(fdf->mlx);
 		fdf->mlx = NULL;
 	}
-}
-
-int	close_window(t_fdf *fdf)
-{
-	free_all(fdf);
 	return (0);
 }
 
@@ -90,7 +85,6 @@ int	main(int argc, char **argv)
 	if (parse_map(argv[1], fdf.map))
 	{
 		ft_printf("%sError: Failed to parse map.%s\n", RED, RESET);
-		free_all(&fdf);
 		exit(1);
 	}
 	init_fdf(&fdf);
