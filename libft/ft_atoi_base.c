@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:37:34 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/24 17:32:55 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 10:20:20 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ int	ft_atoi_base(const char *nptr, const char *base)
 	while (ft_isspace(*nptr))
 		nptr++;
 	if (*nptr == '-' || *nptr == '+')
-		if (*nptr++ == '-' && ft_strlen(base) == 10)
+	{
+		if (*nptr == '-' && ft_strlen(base) == 10)
 			sign = -1;
+		nptr++;
+	}
 	if (*nptr == '0' && (*(nptr + 1) == 'x' || *(nptr + 1) == 'X'))
 		nptr += 2;
 	return (ft_atoi_base_aux(nptr, base, sign));
@@ -52,13 +55,17 @@ static int	is_in_base(char c, const char *base)
 int	ft_atoi_base_aux(const char *nptr, const char *base, int sign)
 {
 	int	result;
+	int	base_len;
+	int	digit_value;
 
 	result = 0;
-	while (is_in_base(ft_tolower(*nptr), base) != -1)
+	base_len = ft_strlen(base);
+	while ((digit_value = is_in_base(ft_tolower(*nptr), base)) != -1)
 	{
-		result *= ft_strlen(base) + is_in_base(ft_tolower(*nptr++), base);
+		result = result * base_len + digit_value;
 		if (result < 0)
 			return (0);
+		nptr++;
 	}
-	return (result * sign);
+	return (result * sign);;
 }

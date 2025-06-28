@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   isometric_projection.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/24 19:04:08 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/26 14:07:36 by vtrofyme         ###   ########.fr       */
+/*   Created: 2025/06/26 14:12:05 by vtrofyme          #+#    #+#             */
+/*   Updated: 2025/06/26 14:14:50 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	init_fdf(t_fdf *fdf)
+void isometric(int *x, int *y, int z, double angle)
 {
-	fdf->mlx = mlx_init();
-	fdf->win = mlx_new_window(fdf->mlx, DEFAULT_WIDTH, DEFAULT_HEIGHT, "FdF");
-	fdf->zoom = 20;
-	fdf->shift_x = DEFAULT_WIDTH / 2;
-	fdf->shift_y = DEFAULT_HEIGHT / 2;
-	fdf->projection = 0;
-	fdf->angle = THIRTY_DEG;
-	fdf->img = mlx_new_image(fdf->mlx, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-	fdf->addr = mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->line_len, &fdf->endian);
+	int	prev_x;
+	int prev_y;
+
+	prev_x = *x;
+	prev_y = *y;
+	*x = (prev_x - prev_y) * cos(angle);
+	*y = (prev_x + prev_y) * sin(angle) - z;
 }

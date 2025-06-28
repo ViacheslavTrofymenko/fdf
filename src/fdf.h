@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/24 20:29:33 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:12:54 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_fdf
 }		t_fdf;
 
 int		**allocate_matrix(int width, int height);
+void	init_fdf(t_fdf *fdf);
 void	free_matrix(int **matrix, int height);
 void	free_str_array(char **arr);
 int		parse_point(char *str, int *z, int *color);
@@ -100,5 +101,6 @@ int		handle_key(int key, t_fdf *fdf);
 int		close_window(t_fdf *fdf);
 t_point	create_point(int x, int y, t_fdf *fdf);
 int		close_window(t_fdf *fdf);
+void isometric(int *x, int *y, int z, double angle);
 
 #endif

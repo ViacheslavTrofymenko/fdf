@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:24 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/24 17:54:25 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 10:27:18 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,12 @@ void	free_matrix(int **matrix, int height)
 	int	i;
 
 	i = 0;
+	if (!matrix)
+		return ;
 	while (i < height)
 	{
-		free(matrix[i]);
+		if(matrix[i])
+			free(matrix[i]);
 		i++;
 	}
 	free(matrix);

@@ -6,18 +6,11 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:10 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/24 20:42:51 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 10:16:33 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-static void isometric(int *x, int *y, int z, double angle)
-{
-	int prev_x = *x;
-	int prev_y = *y;
-	*x = (prev_x - prev_y) * cos(angle);
-	*y = (prev_x + prev_y) * sin(angle) - z;
-}
 
 void	put_pixel(t_fdf *fdf, int x, int y, int color)
 {
@@ -31,9 +24,10 @@ void	put_pixel(t_fdf *fdf, int x, int y, int color)
 
 static void draw_line_buf(t_point a, t_point b, t_fdf *fdf)
 {
-	float x_step;
-	float y_step;
-	int max;
+	float	x_step;
+	float	y_step;
+	int		max;
+	int		i;
 
 	a.x *= fdf->zoom;
 	a.y *= fdf->zoom;
@@ -42,7 +36,7 @@ static void draw_line_buf(t_point a, t_point b, t_fdf *fdf)
 	b.y *= fdf->zoom;
 	b.z *= fdf->zoom / 2;
 
-	if (fdf->projection == 1)
+	if (fdf->projection == 0)
 	{
 		isometric(&a.x, &a.y, a.z, fdf->angle);
 		isometric(&b.x, &b.y, b.z, fdf->angle);
@@ -58,19 +52,22 @@ static void draw_line_buf(t_point a, t_point b, t_fdf *fdf)
 	max = fmax(fabs(x_step), fabs(y_step));
 	x_step /= max;
 	y_step /= max;
-
-	while ((int)(a.x - b.x) || (int)(a.y - b.y))
+	i = 0;
+	while (i <= max)
 	{
 		put_pixel(fdf, a.x, a.y, a.color);
 		a.x += x_step;
 		a.y += y_step;
+		i++;
 	}
 }
 
 void draw_map(t_fdf *fdf)
 {
-	int x, y;
-	t_point a, b;
+	int		x;
+	int		y;
+	t_point	a;
+	t_point	b;
 
 	ft_bzero(fdf->addr, DEFAULT_HEIGHT * fdf->line_len);
 
@@ -105,6 +102,5 @@ void draw_map(t_fdf *fdf)
 		y++;
 	}
 	mlx_put_image_to_window(fdf->mlx, fdf->win, fdf->img, 0, 0);
-	printf("w:%d h:%d z:%d\n", fdf->map->width, fdf->map->height, fdf->map->z_matrix[0][0]);
 }
 
