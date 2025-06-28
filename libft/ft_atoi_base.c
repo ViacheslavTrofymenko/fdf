@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:37:34 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 10:20:20 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 20:43:00 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,14 @@ static int	is_in_base(char c, const char *base)
 {
 	int	i;
 
-	i = -1;
-	while (base[++i])
-		if (base[i] == c)
+	c = ft_toupper(c);
+	i = 0;
+	while (base[i])
+	{
+		if (ft_toupper(base[i]) == c)
 			return (i);
+		i++;
+	}
 	return (-1);
 }
 

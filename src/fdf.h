@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/26 14:12:54 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 20:16:13 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@
 # define MAX_HEIGHT 2880
 /* Useful Macros for the angles */
 # define PI 3.14159265358979323846
-# define THIRTY_DEG  0.523599
+# define THIRTY_DEG 0.523599
 
 # define ESC 65307
 # define LEFT 65361
@@ -73,11 +73,10 @@ typedef struct s_fdf
 	void	*mlx;
 	void	*win;
 	t_map	*map;
-	int		zoom;
+	float		zoom;
 	int		shift_x;
 	int		shift_y;
 	int		projection;
-	double	angle;
 	void	*img;
 	char	*addr;
 	int		bpp;
@@ -87,7 +86,7 @@ typedef struct s_fdf
 
 int		**allocate_matrix(int width, int height);
 void	init_fdf(t_fdf *fdf);
-void	free_matrix(int **matrix, int height);
+void	free_matrix(int ***matrix, int height);
 void	free_str_array(char **arr);
 int		parse_point(char *str, int *z, int *color);
 int		parse_map(char *filename, t_map *map);
@@ -101,6 +100,6 @@ int		handle_key(int key, t_fdf *fdf);
 int		close_window(t_fdf *fdf);
 t_point	create_point(int x, int y, t_fdf *fdf);
 int		close_window(t_fdf *fdf);
-void isometric(int *x, int *y, int z, double angle);
+void isometric(float *x, float *y, int z);
 
 #endif

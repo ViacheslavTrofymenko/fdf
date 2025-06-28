@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:10 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 10:16:33 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 20:15:30 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,40 +24,46 @@ void	put_pixel(t_fdf *fdf, int x, int y, int color)
 
 static void draw_line_buf(t_point a, t_point b, t_fdf *fdf)
 {
-	float	x_step;
-	float	y_step;
-	int		max;
-	int		i;
+	float	ax;
+	float	ay;
+	float	bx;
+	float	by;
+	float	az;
+	float	bz;
 
-	a.x *= fdf->zoom;
-	a.y *= fdf->zoom;
-	a.z *= fdf->zoom / 2;
-	b.x *= fdf->zoom;
-	b.y *= fdf->zoom;
-	b.z *= fdf->zoom / 2;
+	float cx = (fdf->map->width - 1) / 2.0;
+	float cy = (fdf->map->height - 1) / 2.0;
+
+	ax = (a.x - cx) * fdf->zoom;
+	ay = (a.y - cy) * fdf->zoom;
+	bx = (b.x - cx) * fdf->zoom;
+	by = (b.y - cy) * fdf->zoom;
+	az = a.z * (fdf->zoom / 2);
+	bz = b.z * (fdf->zoom / 2);
 
 	if (fdf->projection == 0)
 	{
-		isometric(&a.x, &a.y, a.z, fdf->angle);
-		isometric(&b.x, &b.y, b.z, fdf->angle);
+		isometric(&ax, &ay, az);
+		isometric(&bx, &by, bz);
 	}
 
-	a.x += fdf->shift_x;
-	a.y += fdf->shift_y;
-	b.x += fdf->shift_x;
-	b.y += fdf->shift_y;
+	ax += fdf->shift_x;
+	ay += fdf->shift_y;
+	bx += fdf->shift_x;
+	by += fdf->shift_y;
 
-	x_step = b.x - a.x;
-	y_step = b.y - a.y;
-	max = fmax(fabs(x_step), fabs(y_step));
+	float x_step = bx - ax;
+	float y_step = by - ay;
+	int max = fmax(fabs(x_step), fabs(y_step));
 	x_step /= max;
 	y_step /= max;
-	i = 0;
+
+	int i = 0;
 	while (i <= max)
 	{
-		put_pixel(fdf, a.x, a.y, a.color);
-		a.x += x_step;
-		a.y += y_step;
+		put_pixel(fdf, (int)ax, (int)ay, a.color);
+		ax += x_step;
+		ay += y_step;
 		i++;
 	}
 }

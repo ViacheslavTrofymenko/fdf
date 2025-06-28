@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:24 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 13:46:13 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 18:45:19 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	**allocate_matrix(int width, int height)
 	int	**matrix;
 	int	i;
 
-	matrix = malloc(sizeof(int *) * (height + 1));
+	matrix = malloc(sizeof(int *) * height);
 	i = 0;
 	if (!matrix)
 		return (NULL);
@@ -26,7 +26,7 @@ int	**allocate_matrix(int width, int height)
 		matrix[i] = malloc(sizeof(int) * width);
 		if (!matrix[i])
 		{
-			free_matrix(matrix, i);
+			free_matrix(&matrix, i);
 			return (NULL);
 		}
 		i++;

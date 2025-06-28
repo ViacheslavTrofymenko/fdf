@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:18 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 14:21:14 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 20:54:24 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_valid_extension(char *map_name)
 int	close_window(t_fdf *fdf)
 {
 	if (!fdf)
-		return ;
+		return (1);
 
 	if (fdf->img && fdf->mlx)
 	{
@@ -48,12 +48,12 @@ int	close_window(t_fdf *fdf)
 	{
 		if (fdf->map->z_matrix)
 		{
-			free_matrix(fdf->map->z_matrix, fdf->map->height);
+			free_matrix(&fdf->map->z_matrix, fdf->map->height);
 			fdf->map->z_matrix = NULL;
 		}
 		if (fdf->map->color_matrix)
 		{
-			free_matrix(fdf->map->color_matrix, fdf->map->height);
+			free_matrix(&fdf->map->color_matrix, fdf->map->height);
 			fdf->map->color_matrix = NULL;
 		}
 		free(fdf->map);
@@ -65,7 +65,7 @@ int	close_window(t_fdf *fdf)
 		free(fdf->mlx);
 		fdf->mlx = NULL;
 	}
-	return (0);
+	exit(0);
 }
 
 int	main(int argc, char **argv)
@@ -89,7 +89,7 @@ int	main(int argc, char **argv)
 	}
 	init_fdf(&fdf);
 	draw_map(&fdf);
-	mlx_key_hook(fdf.win, handle_key, &fdf);
+	mlx_hook(fdf.win, 2, 1L<<0, handle_key, &fdf);
 	mlx_hook(fdf.win, 17, 0, close_window, &fdf);
 	mlx_loop(fdf.mlx);
 	return (0);

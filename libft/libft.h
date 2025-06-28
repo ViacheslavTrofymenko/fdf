@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 13:13:54 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/23 23:05:30 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 19:30:13 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,11 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 55
+#  define BUFFER_SIZE 1000
+# endif
+
+# ifndef OPEN_MAX
+#  define OPEN_MAX 100
 # endif
 
 typedef struct s_list

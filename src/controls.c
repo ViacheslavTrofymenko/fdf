@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:06 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 14:10:41 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/28 20:16:34 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	handle_key(int key, t_fdf *fdf)
 	if (key == DOWN)
 		fdf->shift_y += 10;
 	if (key == ZOOM_IN)
-		fdf->zoom += 1;
+		fdf->zoom += 0.5;
 	if (key == ZOOM_OUT && fdf->zoom > 1)
-		fdf->zoom -= 1;
+		fdf->zoom -= 0.5;
 	if (key == P)
 		fdf->projection = (fdf->projection + 1) % 3;
 	mlx_clear_window(fdf->mlx, fdf->win);
