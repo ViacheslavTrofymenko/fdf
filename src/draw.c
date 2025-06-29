@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:10 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 20:15:30 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 08:27:38 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void draw_line_buf(t_point a, t_point b, t_fdf *fdf)
 	ay = (a.y - cy) * fdf->zoom;
 	bx = (b.x - cx) * fdf->zoom;
 	by = (b.y - cy) * fdf->zoom;
-	az = a.z * (fdf->zoom / 2);
-	bz = b.z * (fdf->zoom / 2);
+	az = a.z * fdf->z_scale;
+	bz = b.z * fdf->z_scale;
 
 	if (fdf->projection == 0)
 	{

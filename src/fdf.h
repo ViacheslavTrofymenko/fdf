@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 20:16:13 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 08:29:22 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@
 # define RIGHT 65363
 # define UP 65362
 # define DOWN 65364
-# define ZOOM_IN 61
-# define ZOOM_OUT 45
+# define ZOOM_IN 65451
+# define ZOOM_OUT 65453
 # define P 112
-
+# define Z_IN 50
+# define Z_OUT 49
 typedef struct s_point
 {
 	int	x;
@@ -73,7 +74,8 @@ typedef struct s_fdf
 	void	*mlx;
 	void	*win;
 	t_map	*map;
-	float		zoom;
+	float	zoom;
+	float	z_scale;
 	int		shift_x;
 	int		shift_y;
 	int		projection;
