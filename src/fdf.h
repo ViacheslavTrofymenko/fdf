@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 11:24:10 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:40:57 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,14 @@ typedef struct s_coords
 {
 	float	x;
 	float	y;
+	float	z;
 }	t_coords;
 
 typedef struct s_line_params
 {
 	t_coords	start;
 	t_coords	step;
+	t_coords	end;
 	int			max;
 	int			color;
 	t_fdf		*fdf;

@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 11:04:01 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 11:22:23 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:39:44 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@ static void	put_pixel(t_fdf *fdf, int x, int y, int color)
 	char	*dst;
 
 	if (x < 0 || x >= DEFAULT_WIDTH || y < 0 || y >= DEFAULT_HEIGHT)
-		return;
+		return ;
 	dst = fdf->addr + (y * fdf->line_len + x * (fdf->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
-static t_coords	prepare_coordinates(t_point p, t_fdf *fdf, float *z)
+static t_coords	prepare_coordinates(t_point p, t_fdf *fdf)
 {
-	t_coords	coord;
+	t_coords	coords;
 	float		cx;
 	float		cy;
 
 	cx = (fdf->map->width - 1) / 2.0;
 	cy = (fdf->map->height - 1) / 2.0;
-	coord.x = (p.x - cx) * fdf->zoom;
-	coord.y = (p.y - cy) * fdf->zoom;
-	*z = p.z * fdf->z_scale;
+	coords.x = (p.x - cx) * fdf->zoom;
+	coords.y = (p.y - cy) * fdf->zoom;
+	coords.z = p.z * fdf->z_scale;
 	if (fdf->projection == 0)
-		isometric(&coord.x, &coord.y, *z);
-	coord.x += fdf->shift_x;
-	coord.y += fdf->shift_y;
-	return (coord);
+		isometric(&coords.x, &coords.y, coords.z);
+	coords.x += fdf->shift_x;
+	coords.y += fdf->shift_y;
+	return (coords);
 }
 
 static void	calculate_steps(t_coords a, t_coords b, t_coords *step, int *max)
@@ -79,20 +79,11 @@ static void	draw_line(t_line_params *params)
 
 void	draw_line_buf(t_point a, t_point b, t_fdf *fdf)
 {
-	float			az;
-	float			bz;
-	t_coords		start;
-	t_coords		end;
-	t_coords		step;
-	int				max;
 	t_line_params	params;
 
-	start = prepare_coordinates(a, fdf, &az);
-	end = prepare_coordinates(b, fdf, &bz);
-	calculate_steps(start, end, &step, &max);
-	params.start = start;
-	params.step = step;
-	params.max = max;
+	params.start = prepare_coordinates(a, fdf);
+	params.end = prepare_coordinates(b, fdf);
+	calculate_steps(params.start, params.end, &params.step, &params.max);
 	params.color = a.color;
 	params.fdf = fdf;
 	draw_line(&params);
