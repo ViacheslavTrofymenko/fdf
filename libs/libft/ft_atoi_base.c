@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:37:34 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 11:28:05 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 15:01:12 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	ft_isspace(char c)
 	return (c == 32 || (c >= 9 && c <= 13));
 }
 
-// Convert a string to an integer according to the base passed as argument
 int	ft_atoi_base(const char *nptr, const char *base)
 {
 	int	sign;
@@ -64,13 +63,14 @@ int	ft_atoi_base_aux(const char *nptr, const char *base, int sign)
 
 	result = 0;
 	base_len = ft_strlen(base);
-	digit_value = is_in_base(ft_tolower(*nptr), base);
+	digit_value = is_in_base(*nptr, base);
 	while (digit_value != -1)
 	{
 		result = result * base_len + digit_value;
 		if (result < 0)
 			return (0);
 		nptr++;
+		digit_value = is_in_base(*nptr, base);
 	}
 	return (result * sign);
 }
