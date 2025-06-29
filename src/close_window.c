@@ -6,11 +6,42 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 10:05:53 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 10:12:03 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:50:18 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	free_matrix(int ***matrix, int height)
+{
+	int	i;
+
+	if (!matrix || !*matrix)
+		return ;
+	i = 0;
+	while (i < height)
+	{
+		free((*matrix)[i]);
+		i++;
+	}
+	free(*matrix);
+	*matrix = NULL;
+}
+
+void	free_str_array(char **arr)
+{
+	int	i;
+
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
+}
 
 static void	free_fdf_map(t_fdf *fdf)
 {

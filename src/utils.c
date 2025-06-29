@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:24 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 09:33:13 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:49:48 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,37 +34,6 @@ int	**allocate_matrix(int width, int height)
 	return (matrix);
 }
 
-void	free_matrix(int ***matrix, int height)
-{
-	int	i;
-
-	if (!matrix || !*matrix)
-		return ;
-	i = 0;
-	while (i < height)
-	{
-		free((*matrix)[i]);
-		i++;
-	}
-	free(*matrix);
-	*matrix = NULL;
-}
-
-void	free_str_array(char **arr)
-{
-	int	i;
-
-	i = 0;
-	if (!arr)
-		return ;
-	while (arr[i])
-	{
-		free(arr[i]);
-		i++;
-	}
-	free(arr);
-}
-
 static int	count_words(const char *s)
 {
 	int	count;
@@ -86,12 +55,26 @@ static int	count_words(const char *s)
 	return (count);
 }
 
+static int	get_word_len(char *s)
+{
+	int	len;
+
+	len = 0;
+	while (s[len] && !ft_isspace(s[len]))
+		len++;
+	return (len);
+}
+
+static char	*copy_word(char *s, int len)
+{
+	return (ft_substr(s, 0, len));
+}
+
 char	**split_by_spaces(char *s)
 {
 	char	**result;
 	int		count;
 	int		i;
-	char	*start;
 	int		len;
 
 	i = 0;
@@ -107,11 +90,8 @@ char	**split_by_spaces(char *s)
 			s++;
 		if (*s)
 		{
-			start = s;
-			len = 0;
-			while (s[len] && !ft_isspace(s[len]))
-				len++;
-			result[i++] = ft_substr(start, 0, len);
+			len = get_word_len(s);
+			result[i++] = copy_word(s, len);
 			s += len;
 		}
 	}
