@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:06 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 08:30:39 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 09:51:43 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	handle_key(int key, t_fdf *fdf)
 	if (key == ZOOM_OUT && fdf->zoom > 1)
 		fdf->zoom -= 0.5;
 	if (key == P)
-		fdf->projection = (fdf->projection + 1) % 3;
+		fdf->projection = (fdf->projection + 1) % 2;
 	if (key == Z_IN)
 		fdf->z_scale += 0.2;
 	if (key == Z_OUT)

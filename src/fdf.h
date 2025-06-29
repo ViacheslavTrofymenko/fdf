@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 08:29:22 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:14:05 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,30 +19,14 @@
 # include <stdlib.h>
 # include <fcntl.h>
 
-/* color for printing on the screen*/
-# define COLOR_WHITE 0xFFFFFF
-# define COLOR_BLACK 0x000000
-# define COLOR_RED 0xFF0000
-# define COLOR_GREEN 0x00FF00
-# define COLOR_BLUE 0x0000FF
-# define COLOR_YELLOW 0xFFFF00
-# define COLOR_MAGENTA 0xFF00FF
-# define COLOR_CYAN 0x00FFFF
-/* Define color macros */
-# define GREEN   "\033[1;32m"
-# define CYAN    "\033[1;36m"
-# define YELLOW  "\033[1;33m"
-# define RED     "\033[1;31m"
-# define RESET   "\033[0m"
-/* Define default size for the windows */
+
+# define RED "\033[1;31m"
+# define RESET "\033[0m"
 # define DEFAULT_WIDTH 1280
 # define DEFAULT_HEIGHT 720
 # define MAX_WIDTH 5120
 # define MAX_HEIGHT 2880
-/* Useful Macros for the angles */
-# define PI 3.14159265358979323846
 # define THIRTY_DEG 0.523599
-
 # define ESC 65307
 # define LEFT 65361
 # define RIGHT 65363
@@ -53,6 +37,7 @@
 # define P 112
 # define Z_IN 50
 # define Z_OUT 49
+
 typedef struct s_point
 {
 	int	x;
@@ -99,9 +84,8 @@ int		get_map_width(char *filename);
 char	**split_by_spaces(char *s);
 void	draw_map(t_fdf *fdf);
 int		handle_key(int key, t_fdf *fdf);
-int		close_window(t_fdf *fdf);
 t_point	create_point(int x, int y, t_fdf *fdf);
 int		close_window(t_fdf *fdf);
-void isometric(float *x, float *y, int z);
+void	isometric(float *x, float *y, int z);
 
 #endif
