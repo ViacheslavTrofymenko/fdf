@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 19:04:08 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 10:14:44 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:24:55 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_fdf(t_fdf *fdf)
 	fdf->win = mlx_new_window(fdf->mlx, DEFAULT_WIDTH, DEFAULT_HEIGHT, "FdF");
 	set_initial_view(fdf);
 	fdf->img = mlx_new_image(fdf->mlx, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-	fdf->addr = mlx_get_data_addr(fdf->img, &fdf->bpp, &fdf->line_len, &fdf->endian);
+	fdf->addr = mlx_get_data_addr(fdf->img, &fdf->bpp,
+			&fdf->line_len, &fdf->endian);
 	mlx_do_key_autorepeaton(fdf->mlx);
 }

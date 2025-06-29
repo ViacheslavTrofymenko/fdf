@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:18 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 10:10:25 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:26:05 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	main(int argc, char **argv)
 	fdf.map = malloc(sizeof(t_map));
 	if (!fdf.map)
 	{
-		ft_printf("%sError: Failed to allocate memory for map.%s\n", RED, RESET);
+		ft_printf("%sError: Failed to allocate memory.%s\n", RED, RESET);
 		return (1);
 	}
 	if (parse_map(argv[1], fdf.map))

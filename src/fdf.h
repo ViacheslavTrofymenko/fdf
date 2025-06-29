@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 10:14:05 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:24:10 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <math.h>
 # include <stdlib.h>
 # include <fcntl.h>
-
 
 # define RED "\033[1;31m"
 # define RESET "\033[0m"
@@ -71,6 +70,21 @@ typedef struct s_fdf
 	int		endian;
 }		t_fdf;
 
+typedef struct s_coords
+{
+	float	x;
+	float	y;
+}	t_coords;
+
+typedef struct s_line_params
+{
+	t_coords	start;
+	t_coords	step;
+	int			max;
+	int			color;
+	t_fdf		*fdf;
+}	t_line_params;
+
 int		**allocate_matrix(int width, int height);
 void	init_fdf(t_fdf *fdf);
 void	free_matrix(int ***matrix, int height);
@@ -87,5 +101,6 @@ int		handle_key(int key, t_fdf *fdf);
 t_point	create_point(int x, int y, t_fdf *fdf);
 int		close_window(t_fdf *fdf);
 void	isometric(float *x, float *y, int z);
+void	draw_line_buf(t_point a, t_point b, t_fdf *fdf);
 
 #endif

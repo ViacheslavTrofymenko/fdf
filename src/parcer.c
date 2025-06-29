@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:21 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 09:43:28 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 10:19:05 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,8 +137,7 @@ int	parse_lines_into_map(char **lines, t_map *map, int height)
 		free(lines[i]);
 		i++;
 	}
-	free(lines);
-	return (0);
+	return (free(lines), 0);
 }
 
 int	parse_map(char *filename, t_map *map)

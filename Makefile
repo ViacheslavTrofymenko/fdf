@@ -6,15 +6,15 @@
 #    By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/20 15:57:21 by vtrofyme          #+#    #+#              #
-#    Updated: 2025/06/29 10:07:13 by vtrofyme         ###   ########.fr        #
+#    Updated: 2025/06/29 11:04:40 by vtrofyme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= fdf
 
 SRC_DIR		= src
-SRC			= $(addprefix $(SRC_DIR)/, main.c parcer.c parcer_utils.c utils.c \
-				draw.c controls.c init.c isometric_projection.c close_window.c)
+SRC			= $(addprefix $(SRC_DIR)/, main.c parcer.c parcer_utils.c utils.c draw.c\
+				controls.c init.c isometric_projection.c close_window.c draw_utils.c)
 OBJ			= $(SRC:.c=.o)
 CC 			= cc
 CFLAGS		= -Wall -Wextra -Werror -g3

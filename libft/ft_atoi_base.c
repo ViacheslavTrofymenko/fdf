@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 16:37:34 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/28 20:43:00 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 11:28:05 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,13 @@ int	ft_atoi_base_aux(const char *nptr, const char *base, int sign)
 
 	result = 0;
 	base_len = ft_strlen(base);
-	while ((digit_value = is_in_base(ft_tolower(*nptr), base)) != -1)
+	digit_value = is_in_base(ft_tolower(*nptr), base);
+	while (digit_value != -1)
 	{
 		result = result * base_len + digit_value;
 		if (result < 0)
 			return (0);
 		nptr++;
 	}
-	return (result * sign);;
+	return (result * sign);
 }
