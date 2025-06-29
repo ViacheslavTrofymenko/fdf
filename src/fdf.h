@@ -6,15 +6,15 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 11:40:57 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/29 12:27:14 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include "../../minilibx-linux/mlx.h"
-# include "../libft/libft.h"
+# include "../libs/minilibx-linux/mlx.h"
+# include "../libs/libft/libft.h"
 # include <math.h>
 # include <stdlib.h>
 # include <fcntl.h>
@@ -104,5 +104,9 @@ t_point	create_point(int x, int y, t_fdf *fdf);
 int		close_window(t_fdf *fdf);
 void	isometric(float *x, float *y, int z);
 void	draw_line_buf(t_point a, t_point b, t_fdf *fdf);
+int		validate_line_width(char **words, int expected_width, int y);
+int		parse_line(char *line, int y, t_map *map);
+int		count_lines(char *filename);
+int		read_lines(int fd, char **buffer, int height);
 
 #endif
