@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 10:05:53 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 11:10:43 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:36:09 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,20 +63,22 @@ static void	free_all(t_fdf *fdf)
 {
 	if (!fdf)
 		return ;
-	if (fdf->img && fdf->mlx)
-	{
-		mlx_destroy_image(fdf->mlx, fdf->img);
-		fdf->img = NULL;
-	}
+
 	if (fdf->win && fdf->mlx)
 	{
 		mlx_destroy_window(fdf->mlx, fdf->win);
 		fdf->win = NULL;
 	}
+	if (fdf->img && fdf->mlx)
+	{
+		mlx_destroy_image(fdf->mlx, fdf->img);
+		fdf->img = NULL;
+	}
 	if (fdf->map)
 	{
 		free_fdf_map(fdf);
 	}
+
 	if (fdf->mlx)
 	{
 		mlx_destroy_display(fdf->mlx);

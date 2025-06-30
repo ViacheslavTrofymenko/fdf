@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 12:27:14 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:11:42 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ int		validate_line_width(char **words, int expected_width, int y);
 int		parse_line(char *line, int y, t_map *map);
 int		count_lines(char *filename);
 int		read_lines(int fd, char **buffer, int height);
+void	free_all(t_fdf *fdf);
 
 #endif

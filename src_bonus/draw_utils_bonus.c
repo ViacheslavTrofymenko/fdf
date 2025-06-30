@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 11:04:01 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 11:11:42 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:25:06 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static t_coords	prepare_coordinates(t_point p, t_fdf *fdf)
 	coords.z = p.z * fdf->z_scale;
 	if (fdf->projection == 0)
 		isometric(&coords.x, &coords.y, coords.z);
+	if (fdf->projection == 1)
+		conic(&coords.x, &coords.y, coords.z, fdf);
 	coords.x += fdf->shift_x;
 	coords.y += fdf->shift_y;
 	return (coords);

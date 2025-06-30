@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 10:05:53 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 11:50:18 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/30 13:30:13 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	free_matrix(int ***matrix, int height)
 		i++;
 	}
 	free(*matrix);
-	*matrix = NULL;
 }
 
 void	free_str_array(char **arr)
@@ -59,16 +58,16 @@ static void	free_fdf_map(t_fdf *fdf)
 	fdf->map = NULL;
 }
 
-static void	free_all(t_fdf *fdf)
+void	free_all(t_fdf *fdf)
 {
 	if (!fdf)
 		return ;
-	if (fdf->img && fdf->mlx)
+	if (fdf->img)
 	{
 		mlx_destroy_image(fdf->mlx, fdf->img);
 		fdf->img = NULL;
 	}
-	if (fdf->win && fdf->mlx)
+	if (fdf->win)
 	{
 		mlx_destroy_window(fdf->mlx, fdf->win);
 		fdf->win = NULL;

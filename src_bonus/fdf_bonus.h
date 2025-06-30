@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 11:11:09 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/30 12:24:13 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_fdf
 	t_map	*map;
 	float	zoom;
 	float	z_scale;
+	float	depth;
 	int		shift_x;
 	int		shift_y;
 	int		projection;
@@ -108,5 +109,6 @@ int		validate_line_width(char **words, int expected_width, int y);
 int		parse_line(char *line, int y, t_map *map);
 int		count_lines(char *filename);
 int		read_lines(int fd, char **buffer, int height);
+void	conic(float *x, float *y, float z, t_fdf *fdf);
 
 #endif

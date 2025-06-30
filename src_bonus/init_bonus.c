@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 19:04:08 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 11:11:57 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/06/30 11:33:26 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	set_initial_view(t_fdf *fdf)
 	height_zoom = (DEFAULT_HEIGHT / 2.0) / (fdf->map->height - 1);
 	fdf->zoom = fmin(width_zoom, height_zoom);
 	fdf->z_scale = 2.0;
+	fdf->depth = 500.0;
 	fdf->shift_x = DEFAULT_WIDTH / 2;
 	fdf->shift_y = DEFAULT_HEIGHT / 2;
 	fdf->projection = 0;
