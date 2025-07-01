@@ -6,19 +6,14 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:06 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/01 09:50:55 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:49:23 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	handle_key(int key, t_fdf *fdf)
+static void	addional_keys(int key, t_fdf *fdf)
 {
-	if (key == ESC)
-	{
-		free_all(fdf);
-		exit(0);
-	}
 	if (key == LEFT)
 		fdf->shift_x -= 10;
 	if (key == RIGHT)
@@ -27,6 +22,15 @@ int	handle_key(int key, t_fdf *fdf)
 		fdf->shift_y -= 10;
 	if (key == DOWN)
 		fdf->shift_y += 10;
+}
+
+int	handle_key(int key, t_fdf *fdf)
+{
+	if (key == ESC)
+	{
+		free_all(fdf);
+		exit(0);
+	}
 	if (key == ZOOM_IN)
 		fdf->zoom += 0.5;
 	if (key == ZOOM_OUT && fdf->zoom > 1)

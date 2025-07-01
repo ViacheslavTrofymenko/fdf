@@ -59,6 +59,20 @@ ssize_t	read_file(int fd, char **buffer, char **buff_read, char **line)
 	return (n);
 }
 
+int	free_static_var(int fd, char **buff_read)
+{
+	if (fd == -5)
+	{
+		if (*buff_read)
+		{
+			free(*buff_read);
+			*buff_read = NULL;
+		}
+		return (1);
+	}
+	return (0);
+}
+
 char	*get_next_line(int fd)
 {
 	static char		*buff_read;
@@ -66,6 +80,8 @@ char	*get_next_line(int fd)
 	char			*line;
 	ssize_t			n;
 
+	if (free_static_var(fd, &buff_read))
+		return (NULL);
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));

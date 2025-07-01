@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 10:05:53 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/01 10:44:49 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:50:11 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	free_all(t_fdf *fdf)
 {
 	if (!fdf)
 		return ;
-
 	if (fdf->win && fdf->mlx)
 	{
 		mlx_destroy_window(fdf->mlx, fdf->win);
@@ -78,7 +77,6 @@ void	free_all(t_fdf *fdf)
 	{
 		free_fdf_map(fdf);
 	}
-
 	if (fdf->mlx)
 	{
 		mlx_destroy_display(fdf->mlx);

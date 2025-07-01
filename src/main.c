@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:18 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 13:30:19 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 12:38:24 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	main(int argc, char **argv)
 	draw_map(&fdf);
 	mlx_hook(fdf.win, 2, 1, handle_key, &fdf);
 	mlx_hook(fdf.win, 17, 0, close_window, &fdf);
+	get_next_line(-5);
 	mlx_loop(fdf.mlx);
 	return (0);
 }
