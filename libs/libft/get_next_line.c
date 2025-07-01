@@ -12,32 +12,26 @@
 
 #include "libft.h"
 
-ssize_t	read_file(int fd, char **buffer, char **buff_read, char **line);
-char	*get_line(char **buff_read, char **line);
-
-char	*get_next_line(int fd)
+char	*get_line(char **buff_read, char **line)
 {
-	static char		*buff_read[OPEN_MAX];
-	char			*buffer;
-	char			*line;
-	ssize_t			n;
+	size_t	i;
+	char	*new_buff;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
-		return (NULL);
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	if (read(fd, buffer, 0) < 0)
+	i = 0;
+	new_buff = NULL;
+	while ((*(*buff_read + i) != '\n') && (*(*buff_read + i) != '\0'))
+		i++;
+	if (*(*buff_read + i) == '\n')
 	{
-		free(buffer);
-		return (NULL);
+		i++;
+		*line = ft_substr(*buff_read, 0, i);
+		new_buff = ft_strdup(*buff_read + i);
 	}
-	if (!buff_read[fd])
-		buff_read[fd] = ft_strdup("");
-	n = read_file(fd, &buffer, &buff_read[fd], &line);
-	if (n == 0 && !line)
-		return (NULL);
-	return (line);
+	else
+		*line = ft_strdup(*buff_read);
+	free(*buff_read);
+	*buff_read = NULL;
+	return (new_buff);
 }
 
 ssize_t	read_file(int fd, char **buffer, char **buff_read, char **line)
@@ -65,24 +59,27 @@ ssize_t	read_file(int fd, char **buffer, char **buff_read, char **line)
 	return (n);
 }
 
-char	*get_line(char **buff_read, char **line)
+char	*get_next_line(int fd)
 {
-	size_t	i;
-	char	*new_buff;
+	static char		*buff_read[OPEN_MAX];
+	char			*buffer;
+	char			*line;
+	ssize_t			n;
 
-	i = 0;
-	new_buff = NULL;
-	while ((*(*buff_read + i) != '\n') && (*(*buff_read + i) != '\0'))
-		i++;
-	if (*(*buff_read + i) == '\n')
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+		return (NULL);
+	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
+	if (read(fd, buffer, 0) < 0)
 	{
-		i++;
-		*line = ft_substr(*buff_read, 0, i);
-		new_buff = ft_strdup(*buff_read + i);
+		free(buffer);
+		return (NULL);
 	}
-	else
-		*line = ft_strdup(*buff_read);
-	free(*buff_read);
-	*buff_read = NULL;
-	return (new_buff);
+	if (!buff_read[fd])
+		buff_read[fd] = ft_strdup("");
+	n = read_file(fd, &buffer, &buff_read[fd], &line);
+	if (n == 0 && !line)
+		return (NULL);
+	return (line);
 }
