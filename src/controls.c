@@ -6,13 +6,13 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:06 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/01 12:49:23 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:25:26 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	addional_keys(int key, t_fdf *fdf)
+static void	additional_keys(int key, t_fdf *fdf)
 {
 	if (key == LEFT)
 		fdf->shift_x -= 10;
@@ -31,6 +31,7 @@ int	handle_key(int key, t_fdf *fdf)
 		free_all(fdf);
 		exit(0);
 	}
+	additional_keys(key, fdf);
 	if (key == ZOOM_IN)
 		fdf->zoom += 0.5;
 	if (key == ZOOM_OUT && fdf->zoom > 1)

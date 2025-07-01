@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:06 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/01 10:46:04 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 15:34:08 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,49 @@ int	handle_key(int key, t_fdf *fdf)
 		fdf->z_scale -= 0.2;
 	mlx_clear_window(fdf->mlx, fdf->win);
 	draw_map(fdf);
+	return (0);
+}
+
+int	mouse_press(int button, int x, int y, t_fdf *fdf)
+{
+	if (button == 1)
+	{
+		fdf->mouse_pressed = 1;
+		fdf->last_mouse_x = x;
+		fdf->last_mouse_y = y;
+	}
+	return (0);
+}
+
+int	mouse_release(int button, int x, int y, t_fdf *fdf)
+{
+	(void)x;
+	(void)y;
+	if (button == 1)
+		fdf->mouse_pressed = 0;
+	return (0);
+}
+
+int	mouse_move(int x, int y, t_fdf *fdf)
+{
+	static int	counter;
+	int	dx;
+	int	dy;
+
+	counter = 0;
+	if (!fdf->mouse_pressed)
+		return (0);
+	dx = x - fdf->last_mouse_x;
+	dy = y - fdf->last_mouse_y;
+	fdf->angle_y += dx * 0.005;
+	fdf->angle_x += dy * 0.005;
+	fdf->last_mouse_x = x;
+	fdf->last_mouse_y = y;
+	counter++;
+	if (counter % 3 == 0)
+	{
+		mlx_clear_window(fdf->mlx, fdf->win);
+		draw_map(fdf);
+	}
 	return (0);
 }

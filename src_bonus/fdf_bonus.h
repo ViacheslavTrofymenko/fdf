@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/01 10:44:38 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:59:52 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,12 @@ typedef struct s_fdf
 	int		bpp;
 	int		line_len;
 	int		endian;
+	float	angle_x;
+	float	angle_y;
+	float	angle_z;
+	int		mouse_pressed;
+	int		last_mouse_x;
+	int		last_mouse_y;
 }		t_fdf;
 
 typedef struct s_coords
@@ -111,5 +117,9 @@ int		count_lines(char *filename);
 int		read_lines(int fd, char **buffer, int height);
 void	conic(float *x, float *y, float z, t_fdf *fdf);
 void	free_all(t_fdf *fdf);
+int		mouse_press(int button, int x, int y, t_fdf *fdf);
+int		mouse_release(int button, int x, int y, t_fdf *fdf);
+int		mouse_move(int x, int y, t_fdf *fdf);
+void	apply_rotation(t_fdf *data, float *x, float *y, float *z);
 
 #endif

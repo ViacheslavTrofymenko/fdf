@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 11:04:01 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 12:25:06 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 13:50:14 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static t_coords	prepare_coordinates(t_point p, t_fdf *fdf)
 	coords.x = (p.x - cx) * fdf->zoom;
 	coords.y = (p.y - cy) * fdf->zoom;
 	coords.z = p.z * fdf->z_scale;
+	apply_rotation(fdf, &coords.x, &coords.y, &coords.z);
 	if (fdf->projection == 0)
 		isometric(&coords.x, &coords.y, coords.z);
 	if (fdf->projection == 1)

@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 19:04:08 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 11:33:26 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 14:28:39 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,12 @@ void	set_initial_view(t_fdf *fdf)
 	fdf->shift_x = DEFAULT_WIDTH / 2;
 	fdf->shift_y = DEFAULT_HEIGHT / 2;
 	fdf->projection = 0;
+	fdf->angle_x = 0;
+	fdf->angle_y = 0;
+	fdf->angle_z = 0;
+	fdf->mouse_pressed = 0;
+	fdf->last_mouse_x = 0;
+	fdf->last_mouse_y = 0;
 }
 
 void	init_fdf(t_fdf *fdf)

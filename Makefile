@@ -6,7 +6,7 @@
 #    By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/20 15:57:21 by vtrofyme          #+#    #+#              #
-#    Updated: 2025/07/01 09:36:14 by vtrofyme         ###   ########.fr        #
+#    Updated: 2025/07/01 14:00:42 by vtrofyme         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJ				= $(SRC:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 SRC_BONUS		= $(addprefix $(SRC_DIR_BONUS)/, main_bonus.c parcer_bonus.c\
 				parcer_utils_bonus.c parcer_utils2_bonus.c utils_bonus.c\
 				 draw_bonus.c controls_bonus.c init_bonus.c draw_utils_bonus.c\
-				projections_bonus.c close_window_bonus.c)
+				projections_bonus.c close_window_bonus.c rotation_bonus.c)
 OBJ_BONUS		= $(SRC_BONUS:$(SRC_DIR_BONUS)/%.c=$(OBJ_DIR_BONUS)/%.o)
 
 CC 			= cc

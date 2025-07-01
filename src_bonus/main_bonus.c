@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:18 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/01 09:33:11 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 14:34:18 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,11 @@ int	main(int argc, char **argv)
 	init_fdf(&fdf);
 	draw_map(&fdf);
 	mlx_hook(fdf.win, 2, 1, handle_key, &fdf);
+	mlx_hook(fdf.win, 4, 1L<<2, mouse_press, &fdf);
+	mlx_hook(fdf.win, 5, 1L<<3, mouse_release, &fdf);
+	mlx_hook(fdf.win, 6, 1L<<6, mouse_move, &fdf);
 	mlx_hook(fdf.win, 17, 0, close_window, &fdf);
+	get_next_line(-5);
 	mlx_loop(fdf.mlx);
 	return (0);
 }
