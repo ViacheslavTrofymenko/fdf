@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:06 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/29 09:51:43 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 09:50:55 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 int	handle_key(int key, t_fdf *fdf)
 {
 	if (key == ESC)
+	{
+		free_all(fdf);
 		exit(0);
+	}
 	if (key == LEFT)
 		fdf->shift_x -= 10;
 	if (key == RIGHT)

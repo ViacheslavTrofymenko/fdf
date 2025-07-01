@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 10:05:53 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 12:36:09 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 10:44:49 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	free_fdf_map(t_fdf *fdf)
 	fdf->map = NULL;
 }
 
-static void	free_all(t_fdf *fdf)
+void	free_all(t_fdf *fdf)
 {
 	if (!fdf)
 		return ;

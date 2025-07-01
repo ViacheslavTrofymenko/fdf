@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 22:48:26 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/06/30 12:24:13 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/01 10:44:38 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,5 +110,6 @@ int		parse_line(char *line, int y, t_map *map);
 int		count_lines(char *filename);
 int		read_lines(int fd, char **buffer, int height);
 void	conic(float *x, float *y, float z, t_fdf *fdf);
+void	free_all(t_fdf *fdf);
 
 #endif
