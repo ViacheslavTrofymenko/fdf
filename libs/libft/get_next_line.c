@@ -61,12 +61,12 @@ ssize_t	read_file(int fd, char **buffer, char **buff_read, char **line)
 
 char	*get_next_line(int fd)
 {
-	static char		*buff_read[OPEN_MAX];
+	static char		*buff_read;
 	char			*buffer;
 	char			*line;
 	ssize_t			n;
 
-	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
@@ -76,9 +76,9 @@ char	*get_next_line(int fd)
 		free(buffer);
 		return (NULL);
 	}
-	if (!buff_read[fd])
-		buff_read[fd] = ft_strdup("");
-	n = read_file(fd, &buffer, &buff_read[fd], &line);
+	if (!buff_read)
+		buff_read = ft_strdup("");
+	n = read_file(fd, &buffer, &buff_read, &line);
 	if (n == 0 && !line)
 		return (NULL);
 	return (line);
