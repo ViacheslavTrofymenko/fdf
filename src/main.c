@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:18 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/01 12:38:24 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/02 10:45:59 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ int	main(int argc, char **argv)
 	{
 		ft_printf("%sError: Failed to parse map.%s\n", RED, RESET);
 		free(fdf.map);
+		get_next_line(-5);
 		exit(1);
 	}
 	init_fdf(&fdf);
