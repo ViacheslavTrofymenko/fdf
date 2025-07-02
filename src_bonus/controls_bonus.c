@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:06 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/02 09:43:24 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:13:21 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ int	mouse_release(int button, int x, int y, t_fdf *fdf)
 int	mouse_move(int x, int y, t_fdf *fdf)
 {
 	static int	counter;
-	int	dx;
-	int	dy;
+	int			dx;
+	int			dy;
 
 	if (!fdf->mouse_pressed)
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:18 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/02 11:06:14 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/02 11:13:54 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static int	is_valid_extension(char *map_name)
 static void	hooks(t_fdf *fdf)
 {
 	mlx_hook(fdf->win, 2, 1, handle_key, fdf);
-	mlx_hook(fdf->win, 4, 1L<<2, mouse_press, fdf);
-	mlx_hook(fdf->win, 5, 1L<<3, mouse_release, fdf);
-	mlx_hook(fdf->win, 6, 1L<<6, mouse_move, fdf);
+	mlx_hook(fdf->win, 4, 1L << 2, mouse_press, fdf);
+	mlx_hook(fdf->win, 5, 1L << 3, mouse_release, fdf);
+	mlx_hook(fdf->win, 6, 1L << 6, mouse_move, fdf);
 	mlx_hook(fdf->win, 17, 0, close_window, fdf);
 	get_next_line(-5);
 }
