@@ -6,7 +6,7 @@
 /*   By: vtrofyme <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 23:41:06 by vtrofyme          #+#    #+#             */
-/*   Updated: 2025/07/01 15:34:08 by vtrofyme         ###   ########.fr       */
+/*   Updated: 2025/07/02 09:43:24 by vtrofyme         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ int	mouse_move(int x, int y, t_fdf *fdf)
 	int	dx;
 	int	dy;
 
-	counter = 0;
 	if (!fdf->mouse_pressed)
 		return (0);
 	dx = x - fdf->last_mouse_x;
